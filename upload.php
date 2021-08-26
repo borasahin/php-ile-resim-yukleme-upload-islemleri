@@ -1,8 +1,8 @@
 <?php
 	// Gönderilen dosya adınındaki türkçe karakter ve boşlukları dönüştürücü fonksiyonumuz
 	function dosyaadi($degisken){
-		$bul	= array('Ç', 'Ş', 'Ğ', 'Ü', 'İ', 'Ö', 'ç', 'ş', 'ğ', 'ü', 'ö', 'ı', 'Ö', 'İ', 'Ü', '-');
-		$degistir = array('c', 's', 'g', 'u', 'i', 'o', 'c', 's', 'g', 'u', 'o', 'i', 'o', 'i', 'u', ' ');
+		$bul		= array('Ç', 'Ş', 'Ğ', 'Ü', 'İ', 'Ö', 'ç', 'ş', 'ğ', 'ü', 'ö', 'ı', '-','ö','ü');
+		$degistir 	= array('c', 's', 'g', 'u', 'i', 'o', 'c', 's', 'g', 'u', 'o', 'i', ' ','o','u');
 		$sonuc = strtolower(str_replace($bul, $degistir, $degisken));
 		$sonuc = str_replace(' ', '-', $sonuc);
 		return $sonuc;
@@ -27,7 +27,6 @@
 	if (in_array($gelenformat, $dosyaformati)) { // Php in_array fonksiyonu ile gelen dosya formatının izin verilen formatlara uygun olup olmadığını kontrol ediyoruz.
 
 		$yuklenendosya = $klasor . '/' . $zaman . dosyaadi($dosya[count($dosya) - 1]); // Göndeirlen dosyayı yukarıda tanımladığımız dosyaadi() fonksiyonundan geçiriyoruz. Ve dosya yolu ile beraber değişkene atıyoruz.
-
 		move_uploaded_file($dosya_tmp, $yuklenendosya); // Yüklenen dosyayı tmp dizininden olması gereken dizine taşıyoruz.
 
 		$yuklenendosyaadi = $zaman . dosyaadi($dosya[count($dosya) - 1]); // Yüklenen dosya adını ekrana yazdırmak veya veri tabanına yazdırmak için değişkene atıyoruz.
